@@ -1,0 +1,66 @@
+/* --- Basic Setup --- */
+body {
+    background-color: black;
+    margin: 0;
+    padding: 0;
+}
+
+/* --- Gallery Container --- */
+.list {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    min-height: 100vh;
+    transform-style: preserve-3d;
+    transform: perspective(1000px);
+}
+
+
+.list img {
+    width: 130px;
+    height: auto;
+    border-radius: 6px;
+}
+
+.list .item {
+    transition: 0.5s;
+    filter: brightness(0);
+}
+
+/* --- Hovered Item --- */
+.list .item:hover {
+    transform: translateZ(200px);
+    filter: brightness(1);
+}
+
+/* --- Next Sibling Effects --- */
+.list .item:hover+* {
+    transform: translateZ(150px) rotateY(40deg);
+    filter: brightness(0.6);
+}
+
+.list .item:hover+*+* {
+    transform: translateZ(70px) rotateY(20deg);
+    filter: brightness(0.4);
+}
+
+.list .item:hover+*+*+* {
+    transform: translateZ(30px) rotateY(10deg);
+    filter: brightness(0.2);
+}
+
+.list .item:has(+ *:hover) {
+    transform: translateZ(150px) rotateY(-40deg);
+    filter: brightness(0.6);
+}
+
+.list .item:has(+ * + *:hover) {
+    transform: translateZ(70px) rotateY(-20deg);
+    filter: brightness(0.4);
+}
+
+.list .item:has(+ * + * + *:hover) {
+    transform: translateZ(30px) rotateY(-10deg);
+    filter: brightness(0.2);
+}
